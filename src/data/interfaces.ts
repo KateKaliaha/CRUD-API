@@ -4,3 +4,5 @@ export interface IUser {
   age: number;
   hobbies: string[];
 }
+
+export type BodyPost = Omit<IUser, 'id'>;
