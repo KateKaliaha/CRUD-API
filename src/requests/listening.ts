@@ -1,6 +1,7 @@
 import { IncomingMessage, ServerResponse } from 'http';
 import { getAllUsers, getUserById } from './get.js';
 import { createUser } from './post.js';
+import { updateUser } from './put.js';
 
 export const listening = (req: IncomingMessage, res: ServerResponse) => {
   const requestURL = req.url;
@@ -10,7 +11,11 @@ export const listening = (req: IncomingMessage, res: ServerResponse) => {
     case 'GET': {
       if (requestURL === '/api/users') {
         getAllUsers(res);
-      } else if (requestURLSplit.length === 4 && requestURLSplit[3] !== '') {
+      } else if (
+        requestURL?.startsWith('/api/users') &&
+        requestURLSplit.length === 4 &&
+        requestURLSplit[3] !== ''
+      ) {
         const id = requestURLSplit[3];
         getUserById(id, res);
       } else {
@@ -23,6 +28,21 @@ export const listening = (req: IncomingMessage, res: ServerResponse) => {
     case 'POST': {
       if (requestURL === '/api/users') {
         createUser(req, res);
+      } else {
+        res.statusCode = 404;
+        res.end(JSON.stringify({ message: 'Common error' }));
+      }
+      break;
+    }
+
+    case 'PUT': {
+      if (
+        requestURL?.startsWith('/api/users') &&
+        requestURLSplit.length === 4 &&
+        requestURLSplit[3] !== ''
+      ) {
+        const id = requestURLSplit[3];
+        updateUser(req, res, id);
       } else {
         res.statusCode = 404;
         res.end(JSON.stringify({ message: 'Common error' }));

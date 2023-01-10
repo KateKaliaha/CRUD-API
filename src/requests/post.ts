@@ -30,18 +30,7 @@ export const createUser = (req: IncomingMessage, res: ServerResponse) => {
         res.writeHead(201, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify(createdUser));
       } else {
-        const { username, age, hobbies } = JSON.parse(body);
-
-        if (!username || !age || !hobbies) {
-          throw new Error();
-        } else {
-          res.statusCode = 404;
-          res.end(
-            JSON.stringify({
-              message: 'Body does not contain true fields types',
-            }),
-          );
-        }
+        throw new Error();
       }
     } catch {
       res.statusCode = 404;

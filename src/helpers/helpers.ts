@@ -1,7 +1,7 @@
 export const validateBody = (body: string) => {
   const { username, age, hobbies } = JSON.parse(body);
 
-  if (typeof username !== 'string') {
+  if (typeof username !== 'string' || username === '') {
     return false;
   }
 
@@ -16,7 +16,7 @@ export const validateBody = (body: string) => {
   if (Array.isArray(hobbies)) {
     if (
       hobbies.length !== 0 &&
-      hobbies.some((hobby: string | number) => typeof hobby !== 'string')
+      hobbies.some((hobby: unknown) => typeof hobby !== 'string')
     ) {
       return false;
     }
