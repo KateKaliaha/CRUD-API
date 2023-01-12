@@ -1,6 +1,6 @@
 import { ServerResponse } from 'http';
 import { validate } from 'uuid';
-import { users } from '../data/data.js';
+import { users } from '../data/data';
 
 export const getAllUsers = (res: ServerResponse) => {
   res.statusCode = 200;

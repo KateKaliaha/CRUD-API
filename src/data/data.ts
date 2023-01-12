@@ -1,3 +1,3 @@
-import { IUser } from './interfaces.js';
+import { IUser } from './interfaces';
 
 export const users: IUser[] = [];

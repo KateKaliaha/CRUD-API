@@ -1,6 +1,6 @@
 import { IncomingMessage, ServerResponse } from 'http';
-import { validateBody } from '../helpers/helpers.js';
-import { users } from '../data/data.js';
+import { validateBody } from '../helpers/helpers';
+import { users } from '../data/data';
 import { validate } from 'uuid';
 
 export const updateUser = (

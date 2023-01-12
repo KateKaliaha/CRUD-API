@@ -1,8 +1,8 @@
 import { IncomingMessage, ServerResponse } from 'http';
-import { removeUser } from './delete.js';
-import { getAllUsers, getUserById } from './get.js';
-import { createUser } from './post.js';
-import { updateUser } from './put.js';
+import { removeUser } from './delete';
+import { getAllUsers, getUserById } from './get';
+import { createUser } from './post';
+import { updateUser } from './put';
 
 export const listening = (req: IncomingMessage, res: ServerResponse) => {
   const requestURL = req.url;

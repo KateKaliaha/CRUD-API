@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 
 import { createServer } from 'http';
-import { listening } from './requests/listening.js';
+import { listening } from './requests/listening';
 
 dotenv.config();
 

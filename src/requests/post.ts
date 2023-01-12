@@ -1,8 +1,8 @@
 import { IncomingMessage, ServerResponse } from 'http';
-import { BodyPost } from '../data/interfaces.js';
-import { validateBody } from '../helpers/helpers.js';
+import { BodyPost } from '../data/interfaces';
+import { validateBody } from '../helpers/helpers';
 import { v4 as uuidv4 } from 'uuid';
-import { users } from '../data/data.js';
+import { users } from '../data/data';
 
 export const createUser = (req: IncomingMessage, res: ServerResponse) => {
   let body = '';
