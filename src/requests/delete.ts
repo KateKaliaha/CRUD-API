@@ -4,6 +4,7 @@ import { users } from '../data/data';
 
 export const removeUser = (id: string, res: ServerResponse) => {
   const validateId = validate(id);
+  console.log(id, validateId);
 
   if (!validateId) {
     res.statusCode = 400;
@@ -16,11 +17,12 @@ export const removeUser = (id: string, res: ServerResponse) => {
     const index = users.findIndex((user) => user.id === id);
     users.splice(index, 1);
     res.writeHead(204, { 'Content-Type': 'application/json' });
+    res.end();
     return;
   }
   if (!findUserById) {
     res.statusCode = 404;
-    res.end(JSON.stringify({ message: 'User not found!' }));
+    res.end(JSON.stringify({ message: 'User not exist!' }));
     return;
   }
 };
