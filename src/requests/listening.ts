@@ -1,13 +1,20 @@
 import { IncomingMessage, ServerResponse } from 'http';
+import { changeUsersData, users } from '../data/data';
+import { IUser } from '../data/interfaces';
 import { removeUser } from './delete';
 import { getAllUsers, getUserById } from './get';
 import { createUser } from './post';
 import { updateUser } from './put';
 
-export const listening = async (req: IncomingMessage, res: ServerResponse) => {
+export const listening = async (
+  req: IncomingMessage,
+  res: ServerResponse,
+  usersData: IUser[],
+) => {
   try {
     const requestURL = req.url;
     const requestURLSplit = (req.url as string).split('/');
+    changeUsersData(usersData);
 
     switch (req.method) {
       case 'GET': {
@@ -75,4 +82,6 @@ export const listening = async (req: IncomingMessage, res: ServerResponse) => {
     res.statusCode = 500;
     res.end(JSON.stringify({ message: 'Internal Server Error. Try later!' }));
   }
+
+  return users;
 };

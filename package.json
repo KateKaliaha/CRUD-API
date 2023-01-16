@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "nodemon",
-    "start:build": "webpack && node build/index.js",
+    "start:prod": "webpack && node build/index.js",
+    "start:multi": "ts-node ./src/index.ts --multi",
     "start": "ts-node ./src/index.ts",
     "test": "jest",
     "lint": "eslint ./src",
@@ -44,6 +45,7 @@
     "wepack-cli": "^0.0.1-security"
   },
   "dependencies": {
+    "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
     "uuid": "^9.0.0"
   }

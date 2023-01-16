@@ -1,3 +1,7 @@
 import { IUser } from './interfaces';
 
-export const users: IUser[] = [];
+export let users: IUser[] = [];
+
+export function changeUsersData(value: IUser[]) {
+  users = [...value];
+}

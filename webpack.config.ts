@@ -1,23 +1,23 @@
-const path = require('path');
+import path from 'path';
 
-module.exports = {
+export default {
   mode: 'production',
   entry: './src/index.ts',
+  output: {
+    filename: 'index.js',
+    path: path.resolve(__dirname, 'build'),
+  },
   module: {
     rules: [
       {
-        test: /\.ts$/,
+        test: /\.[tj]s$/,
         use: 'ts-loader',
         exclude: /node_modules/,
       },
     ],
   },
   resolve: {
-    extensions: ['.ts', '.js'],
-  },
-  output: {
-    filename: 'index.js',
-    path: path.resolve(__dirname, 'build'),
+    extensions: ['.ts', '.js', '.mjs'],
   },
   target: 'node',
 };

@@ -1,14 +1,16 @@
 import * as dotenv from 'dotenv';
-
 import { createServer } from 'http';
-import { listening } from './requests/listening';
+import { multiServer } from './server/cluster';
+import { handlerServer } from './server/handler';
+import { runServer } from './server/start';
 
 dotenv.config();
 
-const PORT = process.env.PORT || 4000;
+export const PORT = process.env.PORT ? +process.env.PORT : 4000;
+export const server = createServer(handlerServer);
 
-export const server = createServer(listening);
-
-server.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+if (process.argv[2] === '--multi') {
+  multiServer();
+} else {
+  runServer(PORT);
+}
